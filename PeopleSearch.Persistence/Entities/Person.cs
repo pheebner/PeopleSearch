@@ -14,11 +14,10 @@ namespace PeopleSearch.Persistence.Entities
         [MaxLength(50)]
         public string LastName { get; set; }
         [Required]
-        public Address Address { get; set; }
-        [Required]
         public int Age { get; set; }
         [Required]
         [Column(TypeName = "Text")]
         public string Interests { get; set; }
+        public Address Address { get; set; }
     }
 }

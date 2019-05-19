@@ -11,5 +11,10 @@ namespace PeopleSearch.Persistence
 
         public DbSet<Person> People { get; set; }
         public DbSet<Address> Addresses { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            DbSeeder.Seed(modelBuilder);
+        }
     }
 }

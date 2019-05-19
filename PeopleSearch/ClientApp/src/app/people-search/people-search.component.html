@@ -1,0 +1,22 @@
+<h1>Search People</h1>
+
+<p *ngIf="!people"><em>Loading...</em></p>
+
+<table class='table table-striped' *ngIf="people">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Age</th>
+      <th>Interests</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let person of people">
+      <td>{{ person.firstName }} {{ person.lastName }}</td>
+      <td></td>
+      <td>{{ person.age }}</td>
+      <td>{{ person.interests }}</td>
+    </tr>
+  </tbody>
+</table>
