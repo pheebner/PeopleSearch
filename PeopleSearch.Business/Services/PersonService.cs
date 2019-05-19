@@ -1,5 +1,7 @@
-﻿using PeopleSearch.Business.Interfaces;
+﻿using AutoMapper;
+using PeopleSearch.Business.Interfaces;
 using PeopleSearch.Business.Models;
+using PeopleSearch.Persistence.Repositories.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,24 +9,18 @@ namespace PeopleSearch.Business.Services
 {
     public class PersonService : IPersonService
     {
-        public IEnumerable<Person> Search(string searchText)
+        private readonly IPersonRepository _personRepository;
+        private readonly IMapper _mapper;
+
+        public PersonService(IPersonRepository personRepository, IMapper mapper)
         {
-            //TODO wire up to database
-            return Enumerable.Range(1, 10).Select(i => new Person
-            {
-                FirstName = nameof(Person.FirstName),
-                LastName = nameof(Person.LastName),
-                Address = new Address
-                {
-                    City = nameof(Address.City),
-                    Street = nameof(Address.Street),
-                    ZipCode = nameof(Address.ZipCode),
-                    Country = nameof(Address.Country)
-                },
-                Age = i,
-                Interests = Enumerable.Range(i, i + 10).Select(j => j.ToString()),
-                PictureUrl = nameof(Person.PictureUrl)
-            });
+            _personRepository = personRepository;
+            _mapper = mapper;
+        }
+
+        public IEnumerable<Person> SearchByName(string searchText)
+        {
+            return _personRepository.SearchByName(searchText).Select(p => _mapper.Map<Person>(p)).ToList();
         }
     }
 }

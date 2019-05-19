@@ -1,12 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using PeopleSearch.Business.Interfaces;
-using PeopleSearch.Business.Services;
+using PeopleSearch.IoC.Configuration.DependencyInjection;
 
 namespace PeopleSearch
 {
@@ -30,7 +28,7 @@ namespace PeopleSearch
                 configuration.RootPath = "ClientApp/dist";
             });
 
-            services.AddTransient<IPersonService, PersonService>();
+            DependencyInjectionHelper.InjectDependencies(services, Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

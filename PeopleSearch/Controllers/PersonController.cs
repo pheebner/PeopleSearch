@@ -17,9 +17,9 @@ namespace PeopleSearch.Controllers
         }
 
         [HttpGet("[action]")]
-        public IEnumerable<Person> Search(string searchText)
+        public IEnumerable<Person> SearchByName(string searchText)
         {
-            return _personService.Search(searchText);
+            return _personService.SearchByName(searchText);
         }
     }
 }

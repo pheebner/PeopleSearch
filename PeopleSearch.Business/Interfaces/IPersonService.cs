@@ -5,6 +5,6 @@ namespace PeopleSearch.Business.Interfaces
 {
     public interface IPersonService
     {
-        IEnumerable<Person> Search(string searchText);
+        IEnumerable<Person> SearchByName(string searchText);
     }
 }
