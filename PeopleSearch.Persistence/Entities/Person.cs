@@ -1,20 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PeopleSearch.Persistence.Entities
 {
     public class Person
     {
-        public Person()
-        {
-            Interests = new HashSet<Interest>();
-        }
-
-        public int PersonId { get; set; }
+        public int Id { get; set; }
+        [MaxLength(50)]
         public string FirstName { get; set; }
+        [MaxLength(50)]
         public string LastName { get; set; }
         public Address Address { get; set; }
         public int Age { get; set; }
-        public string PictureUrl { get; set; }
-        public virtual ICollection<Interest> Interests { get; set; }
+        [Column(TypeName = "Text")]
+        public string Interests { get; set; }
     }
 }

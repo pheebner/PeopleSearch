@@ -10,7 +10,6 @@ namespace PeopleSearch.Persistence
         }
 
         public DbSet<Person> People { get; set; }
-        public DbSet<Interest> Interests { get; set; }
         public DbSet<Address> Addresses { get; set; }
     }
 }

@@ -17,7 +17,8 @@ namespace PeopleSearch.Persistence.Repositories
 
         public IEnumerable<Person> SearchByName(string searchText)
         {
-            return _peopleSearchContext.People.Include(p => p.Interests)
+            return _peopleSearchContext.People
+                .Include(p => p.Address)
                 .Where(p => p.FirstName.Contains(searchText) || p.LastName.Contains(searchText))
                 .ToList();
         }

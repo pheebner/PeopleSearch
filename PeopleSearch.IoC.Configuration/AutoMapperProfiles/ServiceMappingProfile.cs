@@ -9,8 +9,7 @@ namespace PeopleSearch.IoC.Configuration.AutoMapperProfiles
     {
         public ServiceMappingProfile()
         {
-            CreateMap<Entities.Person, BusinessModels.Person>()
-                .ForMember(dest => dest.Interests, options => options.MapFrom(src => src.Interests.Select(i => i.Description).ToList()));
+            CreateMap<Entities.Person, BusinessModels.Person>();
             CreateMap<Entities.Address, BusinessModels.Address>();
         }
     }
