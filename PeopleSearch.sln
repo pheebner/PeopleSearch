@@ -5,6 +5,13 @@ VisualStudioVersion = 15.0.28307.645
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeopleSearch", "PeopleSearch\PeopleSearch.csproj", "{ACFFDDB6-AEA4-4FA1-A9F9-062D6049A36D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{343212D6-9722-46F9-BF5A-025404093BE2}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeopleSearch.Business", "PeopleSearch.Business\PeopleSearch.Business.csproj", "{5DF9BB04-621E-4C78-BDBE-35329176853D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +22,10 @@ Global
 		{ACFFDDB6-AEA4-4FA1-A9F9-062D6049A36D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACFFDDB6-AEA4-4FA1-A9F9-062D6049A36D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ACFFDDB6-AEA4-4FA1-A9F9-062D6049A36D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DF9BB04-621E-4C78-BDBE-35329176853D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DF9BB04-621E-4C78-BDBE-35329176853D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DF9BB04-621E-4C78-BDBE-35329176853D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DF9BB04-621E-4C78-BDBE-35329176853D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

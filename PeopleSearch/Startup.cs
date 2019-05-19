@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PeopleSearch.Business.Interfaces;
+using PeopleSearch.Business.Services;
 
 namespace PeopleSearch
 {
@@ -27,6 +29,8 @@ namespace PeopleSearch
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            services.AddTransient<IPersonService, PersonService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,0 +1,1 @@
+In order to access the API outside of the app, make sure whatever tool you are using does not verify SSL certificates
