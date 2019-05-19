@@ -1,9 +1,8 @@
-﻿using PeopleSearch.Persistence.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using PeopleSearch.Persistence.Entities;
 using PeopleSearch.Persistence.Repositories.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace PeopleSearch.Persistence.Repositories
 {
@@ -18,7 +17,9 @@ namespace PeopleSearch.Persistence.Repositories
 
         public IEnumerable<Person> SearchByName(string searchText)
         {
-            return _peopleSearchContext.People.Where(p => p.FirstName.Contains(searchText) || p.LastName.Contains(searchText)).ToList();
+            return _peopleSearchContext.People.Include(p => p.Interests)
+                .Where(p => p.FirstName.Contains(searchText) || p.LastName.Contains(searchText))
+                .ToList();
         }
     }
 }
