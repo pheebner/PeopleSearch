@@ -18,6 +18,7 @@ namespace PeopleSearch.Persistence
                     LastName = "Parker",
                     Age = 15,
                     Interests = "Physics, Volunteer work, Girls",
+                    PictureUrl = "images/peter_parker.png"
                 },
                 new Person
                 {
@@ -25,7 +26,8 @@ namespace PeopleSearch.Persistence
                     FirstName = "Tony",
                     LastName = "Stark",
                     Age = 40,
-                    Interests = "Mechanical Engineering, Women, Reading"
+                    Interests = "Mechanical Engineering, Women, Reading",
+                    PictureUrl = "images/tony_stark.png"
                 },
                 new Person
                 {
@@ -33,7 +35,8 @@ namespace PeopleSearch.Persistence
                     FirstName = "Thor",
                     LastName = "Odinson",
                     Age = 2000,
-                    Interests = "Honor, Glory, Beer"
+                    Interests = "Honor, Glory, Beer",
+                    PictureUrl = "images/thor_odinson.png"
                 },
                 new Person
                 {
@@ -41,7 +44,8 @@ namespace PeopleSearch.Persistence
                     FirstName = "Bruce",
                     LastName = "Banner",
                     Age = 38,
-                    Interests = "Anger, Smashing things, Screaming"
+                    Interests = "Anger, Smashing things, Screaming",
+                    PictureUrl = "images/bruce_banner.png"
                 },
                 new Person
                 {
@@ -49,7 +53,8 @@ namespace PeopleSearch.Persistence
                     FirstName = "Steve",
                     LastName = "Rogers",
                     Age = 96,
-                    Interests = "Honor, Patriotism, Time travel"
+                    Interests = "Honor, Patriotism, Time travel",
+                    PictureUrl = "images/steve_rogers.png"
                 });
         }
     }

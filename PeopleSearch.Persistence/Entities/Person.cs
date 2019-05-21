@@ -18,6 +18,8 @@ namespace PeopleSearch.Persistence.Entities
         [Required]
         [Column(TypeName = "Text")]
         public string Interests { get; set; }
+        [MaxLength(50)]
+        public string PictureUrl { get; set; }
         public Address Address { get; set; }
     }
 }
