@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PeopleSearch.Persistence.Entities;
+using PeopleSearch.Persistence.Seeding;
 
 namespace PeopleSearch.Persistence
 {

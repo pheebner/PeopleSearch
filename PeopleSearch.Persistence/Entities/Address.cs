@@ -13,6 +13,9 @@ namespace PeopleSearch.Persistence.Entities
         [MaxLength(60)]
         [Required]
         public string City { get; set; }
+        [MaxLength(2)]
+        [Required]
+        public string State { get; set; }
         [MaxLength(100)]
         [Required]
         public string Street { get; set; }
