@@ -1,6 +1,6 @@
 <h1>Search for a Person</h1>
 
-<input (keyup)="onSearchBoxKeyupEvent($event)" class="mt-1" placeholder="Type a name"/>
+<input (keyup)="onSearchBoxKeyupEvent.next($event.target.value)" class="mt-1" placeholder="Type a name"/>
 <div *ngIf="loading" class="spinner-border spinner-border-sm ml-2" role="status">
   <span class="sr-only">Loading...</span>
 </div>
