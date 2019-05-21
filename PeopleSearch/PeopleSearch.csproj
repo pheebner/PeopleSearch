@@ -26,6 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\people-search\address.model.ts" />
     <None Remove="ClientApp\src\app\people-search\people-search.component.ts" />
     <None Remove="ClientApp\src\app\people-search\person.model.ts" />
   </ItemGroup>
@@ -36,6 +37,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\people-search\address.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\people-search\people-search.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\people-search\person.model.ts" />
   </ItemGroup>

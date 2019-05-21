@@ -19,7 +19,11 @@
     <tr *ngFor="let person of people">
       <td><img height="100" width="100" [src]="person.pictureUrl" alt="Picture of {{ person.firstName }} {{ person.lastName }}"/></td>
       <td>{{ person.firstName }} {{ person.lastName }}</td>
-      <td></td>
+      <td>
+        {{ person.address.street }}
+        <br/>
+        {{ person.address.city }}, {{ person.address.state }} {{ person.address.zipCode }}
+      </td>
       <td>{{ person.age }}</td>
       <td>{{ person.interests }}</td>
     </tr>
