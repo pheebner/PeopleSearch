@@ -1,7 +1,8 @@
-import { Component, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Subject, Observable, of } from 'rxjs';
+import { Component } from '@angular/core';
+import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, tap, map, switchAll } from 'rxjs/operators';
+import { Person } from '../people-search/person.model';
+import { PersonService } from '../services/person.service';
 
 @Component({
   selector: 'app-fetch-data',
@@ -12,7 +13,7 @@ export class PeopleSearchComponent {
   public loading: boolean = false;
   public onSearchBoxKeyupEvent: Subject<string> = new Subject<string>();
 
-  constructor(private httpClient: HttpClient, @Inject('BASE_URL') private baseUrl: string) {
+  constructor(private personService: PersonService) {
   }
 
   ngOnInit(): void {
@@ -21,7 +22,7 @@ export class PeopleSearchComponent {
         debounceTime(300),
         distinctUntilChanged(),
         tap(() => this.loading = true),
-        map((query: string) => this.search(query)),
+        map((searchText: string) => this.personService.searchByName(searchText)),
         switchAll<Person[]>()
       )
       .subscribe(
@@ -36,20 +37,4 @@ export class PeopleSearchComponent {
         () => this.loading = false
       );
   }
-
-  search(query: string): Observable<Person[]> {
-    if (query.length === 0) {
-      return of([]);
-    }
-
-    return this.httpClient.get<Person[]>(this.baseUrl + 'api/Person/SearchByName?searchText=' + query);
-  }
-}
-
-interface Person {
-  firstName: string;
-  lastName: string;
-  age: number;
-  interests: string;
-  pictureUrl: string;
 }
