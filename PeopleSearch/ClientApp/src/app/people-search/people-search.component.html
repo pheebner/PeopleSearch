@@ -1,8 +1,11 @@
-<h1>Search People</h1>
+<h1>Search for a Person</h1>
 
-<p *ngIf="!people"><em>Loading...</em></p>
+<input (keyup)="onSearchBoxKeyupEvent($event)" class="mt-1" placeholder="Type a name"/>
+<div *ngIf="loading" class="spinner-border spinner-border-sm ml-2" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
 
-<table class='table table-striped' *ngIf="people">
+<table class='table table-striped mt-4'>
   <thead>
     <tr>
       <th>Name</th>
@@ -20,3 +23,5 @@
     </tr>
   </tbody>
 </table>
+
+<p *ngIf="!people || people.length === 0">Nothing to show</p>
