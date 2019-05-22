@@ -2,6 +2,7 @@
 using PeopleSearch.Business.Interfaces;
 using PeopleSearch.Business.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace PeopleSearch.Controllers
 {
@@ -17,9 +18,9 @@ namespace PeopleSearch.Controllers
         }
 
         [HttpGet("[action]")]
-        public IEnumerable<Person> SearchByName(string searchText)
+        public async Task<IEnumerable<Person>> SearchByName(string searchText)
         {
-            return _personService.SearchByName(searchText);
+            return await _personService.SearchByNameAsync(searchText);
         }
     }
 }

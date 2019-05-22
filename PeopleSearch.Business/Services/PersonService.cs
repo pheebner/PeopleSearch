@@ -4,6 +4,7 @@ using PeopleSearch.Business.Models;
 using PeopleSearch.Persistence.Repositories.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace PeopleSearch.Business.Services
 {
@@ -18,9 +19,9 @@ namespace PeopleSearch.Business.Services
             _mapper = mapper;
         }
 
-        public IEnumerable<Person> SearchByName(string searchText)
+        public async Task<IEnumerable<Person>> SearchByNameAsync(string searchText)
         {
-            return _personRepository.SearchByName(searchText).Select(p => _mapper.Map<Person>(p)).ToList();
+            return (await _personRepository.SearchByNameAsync(searchText)).Select(p => _mapper.Map<Person>(p)).ToList();
         }
     }
 }

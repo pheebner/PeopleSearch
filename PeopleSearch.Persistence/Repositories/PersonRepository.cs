@@ -3,6 +3,7 @@ using PeopleSearch.Persistence.Entities;
 using PeopleSearch.Persistence.Repositories.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace PeopleSearch.Persistence.Repositories
 {
@@ -15,12 +16,12 @@ namespace PeopleSearch.Persistence.Repositories
             _peopleSearchContext = peopleSearchContext;
         }
 
-        public IEnumerable<Person> SearchByName(string searchText)
+        public async Task<IEnumerable<Person>> SearchByNameAsync(string searchText)
         {
-            return _peopleSearchContext.People
+            return await _peopleSearchContext.People
                 .Include(p => p.Address)
                 .Where(p => p.FirstName.Contains(searchText) || p.LastName.Contains(searchText))
-                .ToList();
+                .ToListAsync();
         }
     }
 }
