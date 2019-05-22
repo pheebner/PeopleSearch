@@ -20,6 +20,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F95F78EE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeopleSearch.Persistence.Tests", "PeopleSearch.Persistence.Tests\PeopleSearch.Persistence.Tests.csproj", "{2A99911D-0D8D-46D7-BDB9-2CA38038E676}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeopleSearch.Business.Tests", "PeopleSearch.Business.Tests\PeopleSearch.Business.Tests.csproj", "{7A803E8D-0B83-422D-802A-943C04DE2C7E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,12 +48,17 @@ Global
 		{2A99911D-0D8D-46D7-BDB9-2CA38038E676}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A99911D-0D8D-46D7-BDB9-2CA38038E676}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A99911D-0D8D-46D7-BDB9-2CA38038E676}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A803E8D-0B83-422D-802A-943C04DE2C7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A803E8D-0B83-422D-802A-943C04DE2C7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A803E8D-0B83-422D-802A-943C04DE2C7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A803E8D-0B83-422D-802A-943C04DE2C7E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{2A99911D-0D8D-46D7-BDB9-2CA38038E676} = {F95F78EE-3773-4EEB-B497-474FFC78FBAE}
+		{7A803E8D-0B83-422D-802A-943C04DE2C7E} = {F95F78EE-3773-4EEB-B497-474FFC78FBAE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {870F4C56-C971-40BA-8154-2032ADC9D3C8}
