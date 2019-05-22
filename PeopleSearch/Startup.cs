@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using PeopleSearch.IoC.Configuration.DependencyInjection;
+using PeopleSearch.IoC.DependencyInjection;
 
 namespace PeopleSearch
 {

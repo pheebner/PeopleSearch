@@ -34,7 +34,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PeopleSearch.Business\PeopleSearch.Business.csproj" />
-    <ProjectReference Include="..\PeopleSearch.IoC.Configuration\PeopleSearch.IoC.Configuration.csproj" />
   </ItemGroup>
 
   <ItemGroup>

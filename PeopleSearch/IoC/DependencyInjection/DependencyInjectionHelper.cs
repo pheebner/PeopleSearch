@@ -9,7 +9,7 @@ using PeopleSearch.Persistence;
 using PeopleSearch.Persistence.Repositories;
 using PeopleSearch.Persistence.Repositories.Interfaces;
 
-namespace PeopleSearch.IoC.Configuration.DependencyInjection
+namespace PeopleSearch.IoC.DependencyInjection
 {
     public static class DependencyInjectionHelper
     {

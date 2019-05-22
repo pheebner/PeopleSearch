@@ -14,8 +14,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PeopleSearch.Business", "Pe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PeopleSearch.Persistence", "PeopleSearch.Persistence\PeopleSearch.Persistence.csproj", "{223908FA-D181-430B-95AC-B106B8791ECD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PeopleSearch.IoC.Configuration", "PeopleSearch.IoC.Configuration\PeopleSearch.IoC.Configuration.csproj", "{9A12E161-426F-4616-BC09-5A51391FAB14}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F95F78EE-3773-4EEB-B497-474FFC78FBAE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PeopleSearch.Persistence.Tests", "PeopleSearch.Persistence.Tests\PeopleSearch.Persistence.Tests.csproj", "{2A99911D-0D8D-46D7-BDB9-2CA38038E676}"
@@ -24,7 +22,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PeopleSearch.Business.Tests
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PeopleSearch.Tests", "PeopleSearch.Tests\PeopleSearch.Tests.csproj", "{F5D2FD45-D027-4B7B-BFC4-C9058B1B99B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeopleSearch.Domain", "PeopleSearch.Domain\PeopleSearch.Domain.csproj", "{78C28020-E79E-4A04-935B-FDFAACD3791C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PeopleSearch.Domain", "PeopleSearch.Domain\PeopleSearch.Domain.csproj", "{78C28020-E79E-4A04-935B-FDFAACD3791C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,10 +42,6 @@ Global
 		{223908FA-D181-430B-95AC-B106B8791ECD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{223908FA-D181-430B-95AC-B106B8791ECD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{223908FA-D181-430B-95AC-B106B8791ECD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9A12E161-426F-4616-BC09-5A51391FAB14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9A12E161-426F-4616-BC09-5A51391FAB14}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9A12E161-426F-4616-BC09-5A51391FAB14}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9A12E161-426F-4616-BC09-5A51391FAB14}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2A99911D-0D8D-46D7-BDB9-2CA38038E676}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2A99911D-0D8D-46D7-BDB9-2CA38038E676}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A99911D-0D8D-46D7-BDB9-2CA38038E676}.Release|Any CPU.ActiveCfg = Release|Any CPU

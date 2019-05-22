@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace PeopleSearch.IoC.Configuration.AutoMapperProfiles
+namespace PeopleSearch.IoC.AutoMapperProfiles
 {
     public class PersistenceMappingProfile : Profile
     {
