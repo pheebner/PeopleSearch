@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\people-search\address.model.ts" />
+    <None Remove="ClientApp\src\app\people-search\people-search.component.spec.ts" />
     <None Remove="ClientApp\src\app\people-search\people-search.component.ts" />
     <None Remove="ClientApp\src\app\people-search\person.model.ts" />
     <None Remove="ClientApp\src\app\testing\async-observable-helper.ts" />
@@ -38,6 +39,7 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\people-search\address.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\people-search\people-search.component.spec.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\people-search\people-search.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\people-search\person.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\testing\async-observable-helper.ts" />

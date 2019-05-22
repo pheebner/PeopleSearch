@@ -7,7 +7,7 @@ import { asyncData } from '../testing/async-observable-helper';
 
 describe('PersonService', () => {
   let httpClientSpy: { get: jasmine.Spy };
-  let personService: PersonService;
+  let fixture: PersonService;
   const baseUrl: string = 'testhost.com';
 
   beforeEach(() => {
@@ -17,11 +17,11 @@ describe('PersonService', () => {
       providers: [PersonService, { provide: HttpClient, useValue: httpClientSpy }, { provide: 'BASE_URL', useValue: baseUrl }]
     });
 
-    personService = TestBed.get(PersonService);
+    fixture = TestBed.get(PersonService);
   });
 
   it('should be created', (() => {
-    expect(personService).toBeTruthy();
+    expect(fixture).toBeTruthy();
   }));
 
   it('should search with expected url and return expected results', (() => {
@@ -32,7 +32,7 @@ describe('PersonService', () => {
     httpClientSpy.get.and.returnValue(asyncData(expectedPeople));
 
     let searchText: string = 'searchText';
-    personService.searchByName(searchText).subscribe(
+    fixture.searchByName(searchText).subscribe(
       people => expect(people).toEqual(expectedPeople, 'expected people'),
       fail
     );
@@ -47,7 +47,7 @@ describe('PersonService', () => {
 
     httpClientSpy.get.and.returnValue(asyncData(expectedPeople));
 
-    personService.searchByName('').subscribe(
+    fixture.searchByName('').subscribe(
       people => expect(people).toEqual([], 'expected people'),
       fail
     );
