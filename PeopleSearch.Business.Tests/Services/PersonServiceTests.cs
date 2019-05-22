@@ -7,8 +7,7 @@ using PeopleSearch.Business.Services;
 using PeopleSearch.Persistence.Repositories.Interfaces;
 using System.Linq;
 using System.Threading.Tasks;
-using BusinessModels = PeopleSearch.Business.Models;
-using Entities = PeopleSearch.Persistence.Entities;
+using PeopleSearch.Domain.Dto;
 
 namespace PeopleSearch.Business.Tests.Services
 {
@@ -18,25 +17,18 @@ namespace PeopleSearch.Business.Tests.Services
         private readonly IFixture _fixture = new Fixture();
 
         [Test]
-        public async Task SearchByNameAsync_CallsRepositoryAndMapsEachEntityToBusinessModel()
+        public async Task SearchByNameAsync_CallsRepositoryAndReturnsRepositoryResults()
         {
             var searchText = _fixture.Create<string>();
-            var people = _fixture.CreateMany<Entities.Person>().ToList();
+            var expectedPeople = _fixture.CreateMany<Person>().ToList();
             var personRepositoryMock = new Mock<IPersonRepository>();
-            personRepositoryMock.Setup(r => r.SearchByNameAsync(searchText)).ReturnsAsync(people).Verifiable();
-            var mapperMock = new Mock<IMapper>();
-            mapperMock.Setup(m => m.Map<BusinessModels.Person>(It.IsAny<Entities.Person>()))
-                .Returns<Entities.Person>(p => new BusinessModels.Person { FirstName = p.FirstName })
-                .Verifiable();
-            var sut = new PersonService(personRepositoryMock.Object, mapperMock.Object);
+            personRepositoryMock.Setup(r => r.SearchByNameAsync(searchText)).ReturnsAsync(expectedPeople).Verifiable();
+            var sut = new PersonService(personRepositoryMock.Object);
 
-            var mappedPeople = await sut.SearchByNameAsync(searchText);
+            var actualPeople = await sut.SearchByNameAsync(searchText);
 
             personRepositoryMock.Verify();
-            mapperMock.Verify();
-            var expectedFirstNames = people.Select(p => p.FirstName).ToList();
-            var actualFirstNames = mappedPeople.Select(p => p.FirstName).ToList();
-            expectedFirstNames.Should().BeEquivalentTo(actualFirstNames);
+            actualPeople.Should().BeEquivalentTo(expectedPeople);
         }
     }
 }

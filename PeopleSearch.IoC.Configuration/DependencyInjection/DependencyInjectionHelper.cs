@@ -23,7 +23,7 @@ namespace PeopleSearch.IoC.Configuration.DependencyInjection
             services.AddTransient<IPersonRepository, PersonRepository>();
             services.AddTransient<IPersonService, PersonService>();
 
-            var mappingConfig = new MapperConfiguration(ce => ce.AddProfile(new ServiceMappingProfile()));
+            var mappingConfig = new MapperConfiguration(ce => ce.AddProfile(new PersistenceMappingProfile()));
             services.AddSingleton(mappingConfig.CreateMapper());
         }
     }

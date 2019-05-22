@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PeopleSearch.Business.Interfaces;
-using PeopleSearch.Business.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using PeopleSearch.Domain.Dto;
 
 namespace PeopleSearch.Controllers
 {
@@ -18,9 +18,6 @@ namespace PeopleSearch.Controllers
         }
 
         [HttpGet("[action]")]
-        public async Task<IEnumerable<Person>> SearchByName(string searchText)
-        {
-            return await _personService.SearchByNameAsync(searchText);
-        }
+        public async Task<IEnumerable<Person>> SearchByName(string searchText) => await _personService.SearchByNameAsync(searchText);
     }
 }

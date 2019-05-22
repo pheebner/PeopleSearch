@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using PeopleSearch.Persistence.Entities;
+using PeopleSearch.Domain.Dto;
 
 namespace PeopleSearch.Persistence.Repositories.Interfaces
 {

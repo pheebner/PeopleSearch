@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PeopleSearch.Business\PeopleSearch.Business.csproj" />
+    <ProjectReference Include="..\PeopleSearch.Domain\PeopleSearch.Domain.csproj" />
     <ProjectReference Include="..\PeopleSearch.Persistence\PeopleSearch.Persistence.csproj" />
   </ItemGroup>
 

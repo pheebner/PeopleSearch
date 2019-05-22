@@ -1,4 +1,4 @@
-﻿namespace PeopleSearch.Business.Models
+﻿namespace PeopleSearch.Domain.Dto
 {
     public class Address
     {

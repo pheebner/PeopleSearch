@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace PeopleSearch.Business.Models
+﻿namespace PeopleSearch.Domain.Dto
 {
     public class Person
     {

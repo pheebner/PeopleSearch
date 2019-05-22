@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using PeopleSearch.Business.Models;
+using PeopleSearch.Domain.Dto;
 
 namespace PeopleSearch.Business.Interfaces
 {

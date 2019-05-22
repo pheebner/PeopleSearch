@@ -3,8 +3,8 @@ using FluentAssertions;
 using Moq;
 using NUnit.Framework;
 using PeopleSearch.Business.Interfaces;
-using PeopleSearch.Business.Models;
 using PeopleSearch.Controllers;
+using PeopleSearch.Domain.Dto;
 using System.Linq;
 using System.Threading.Tasks;
 
