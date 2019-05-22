@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PeopleSearch.Business.Interfaces;
 using PeopleSearch.Business.Services;
-using PeopleSearch.IoC.Configuration.AutoMapperProfiles;
+using PeopleSearch.IoC.AutoMapperProfiles;
 using PeopleSearch.Persistence;
 using PeopleSearch.Persistence.Repositories;
 using PeopleSearch.Persistence.Repositories.Interfaces;
