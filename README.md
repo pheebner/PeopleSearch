@@ -11,7 +11,7 @@ The 'npm' and 'ng' commands should be available to Visual Studio after these ins
 
 # Database Creation and Migration
 
-The app expects to connect using the PeopleSearchDatabase connection string to a Sql Server database.
+The app expects to connect to a Sql Server database using the PeopleSearchDatabase connection string.
 This connection string can be found in the appsettings.json file inside the web project.
 Please change this value if necessary in order to provide a database to the app.
 
@@ -22,33 +22,33 @@ Run the command 'Update-Database'.  After running this command the database shou
 
 ## Front End
 
-Angular 6
-Node.js
-Karma test runner
-Jasmine testing framework
-Rxjs reactive programming library
+- Angular 6
+- Node.js
+- Karma test runner
+- Jasmine testing framework
+- Rxjs reactive programming library
 
 ## Back End
 
-.NET Core 2.2
-Entity Framework Core
-Automapper
-Autofixture
-Fluent Assertions
-NUnit testing framework
+- .NET Core 2.2
+- Entity Framework Core
+- Automapper
+- Autofixture
+- Fluent Assertions
+- NUnit testing framework
 
 # Possible improvements
 
 ## Create New Person
 
-Feature for creating a new Person that can be added to the search.
+Creates a new person that will show up in searches.
 This would involve uploading a profile picture, which could also involve a client-side image editing tool if we wanted to get fancy.
 This image editor could enforce image size and dimensions before uploading to the back end (which would also check these).
 We could also store these images in Azure or AWS instead of our own server.
 
 ## Interests as Tags
 
-Person interests could also be divided up into comma separated tags and stored in their own Interests table.
+Person interests could be divided up into comma separated tags and stored in their own Interests table.
 This would allow us to suggest interests to the user and connect the same interests between people added to the system.
 This would involve a many to many relationship.
 I was trying to implement this, but soon found out that Entity Framework Core does not support many to many relationships.
