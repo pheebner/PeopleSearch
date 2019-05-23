@@ -6,16 +6,12 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
 import { PeopleSearchComponent } from './people-search/people-search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
-    HomeComponent,
-    CounterComponent,
     PeopleSearchComponent
   ],
   imports: [
@@ -23,9 +19,7 @@ import { PeopleSearchComponent } from './people-search/people-search.component';
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'people-search', component: PeopleSearchComponent },
+      { path: '', component: PeopleSearchComponent, pathMatch: 'full' },
     ])
   ],
   providers: [],
