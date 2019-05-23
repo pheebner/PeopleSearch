@@ -16,6 +16,9 @@ namespace PeopleSearch.Persistence
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             DbSeeder.Seed(modelBuilder);
+
+            modelBuilder.Entity<Person>().HasIndex(p => p.FirstName);
+            modelBuilder.Entity<Person>().HasIndex(p => p.LastName);
         }
     }
 }
