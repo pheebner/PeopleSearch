@@ -5,7 +5,7 @@ This app uses .NET Core 2.2 and Angular 6.  Please ensure these are installed be
 - .NET Core 2.2 SDK Download - https://dotnet.microsoft.com/download/dotnet-core/2.2
 - Angular depends on Node and NPM - https://nodejs.org/en/
 - Angular Command Line Interface - https://www.npmjs.com/package/@angular/cli
--- Ensure that the prerequisites for this are met before installing - https://www.npmjs.com/package/@angular/cli#prerequisites
+  - Ensure that the prerequisites for this are met before installing - https://www.npmjs.com/package/@angular/cli#prerequisites
 
 The 'npm' and 'ng' commands should be available to Visual Studio after these installations are complete.  A restart may be required.
 
