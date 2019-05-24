@@ -30,4 +30,5 @@
   </tbody>
 </table>
 
-<p *ngIf="!people || people.length === 0">Nothing to show</p>
+<p *ngIf="people.length === 0 && !error">Nothing to show</p>
+<p *ngIf="error" class="text-danger font-weight-bold">An error occurred while loading search results.</p>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, tap, map, switchAll } from 'rxjs/operators';
+import { Subject, of, Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged, tap, map, switchAll, catchError } from 'rxjs/operators';
 import { Person } from '../people-search/person.model';
 import { PersonService } from '../services/person.service';
 
@@ -9,8 +9,9 @@ import { PersonService } from '../services/person.service';
   templateUrl: './people-search.component.html'
 })
 export class PeopleSearchComponent {
-  public people: Person[];
+  public people: Person[] = [];
   public loading: boolean = false;
+  public error: boolean = false;
   public onSearchBoxKeyupEvent: Subject<string> = new Subject<string>();
 
   constructor(private personService: PersonService) {
@@ -21,20 +22,25 @@ export class PeopleSearchComponent {
       .pipe(
         debounceTime(300),
         distinctUntilChanged(),
-        tap(() => this.loading = true),
-        map((searchText: string) => this.personService.searchByName(searchText)),
+        tap(() => {
+          this.loading = true;
+          this.error = false;
+        }),
+        map((searchText: string) => 
+          this.personService.searchByName(searchText)
+            .pipe(catchError(err => {
+              console.log(err);
+              this.error = true;
+              return of(<Person[]>[]);
+            }))
+        ),
         switchAll<Person[]>()
       )
       .subscribe(
         results => {
           this.people = results;
           this.loading = false;
-        },
-        err => {
-          console.log(err);
-          this.loading = false;
-        },
-        () => this.loading = false
+        }
       );
   }
 }
