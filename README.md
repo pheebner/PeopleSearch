@@ -18,6 +18,23 @@ Please change this value if necessary in order to provide a database to the app.
 To create the database, open the Package Manager Console and change the default project to PeopleSearch.Persistence.
 Run the command 'Update-Database'.  After running this command the database should be created with migrations applied.
 
+# Testing
+
+## Unit Tests
+
+In order to run the tests for the Angular client app,
+run the command 'ng test' from inside the ClientApp directory of the Web project.
+This will start up the Karma test runner.
+To run the Api tests please use the Visual Studio Test Explorer.
+
+## Simulation of Slow Search
+
+In order to simulate a slow search I used Google Chrome's developer tools to throttle the connection speed.
+The throttle settings are under the Network tab on the top right where it says "Offline" and "No throttling".
+I reached out to Trent Wignall to confirm that this was OK for the assessment.
+I used the "Slow 3G" and "Offline" presets, but custom speeds and latency settings are also available.
+I first let the page load before throttling the connection, this way only the search operation is slowed.
+
 # Technologies Used
 
 ## Front End
