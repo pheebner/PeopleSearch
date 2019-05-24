@@ -30,8 +30,9 @@ To run the Api tests please use the Visual Studio Test Explorer.
 ## Simulation of Slow Search
 
 In order to simulate a slow search I used Google Chrome's developer tools to throttle the connection speed.
-The throttle settings are under the Network tab on the top right where it says "Offline" and "No throttling".
 I reached out to Trent Wignall to confirm that this was OK for the assessment.
+
+The throttle settings are under the Network tab on the top right where it says "Offline" and "No throttling".
 I used the "Slow 3G" and "Offline" presets, but custom speeds and latency settings are also available.
 I first let the page load before throttling the connection, this way only the search operation is slowed.
 
