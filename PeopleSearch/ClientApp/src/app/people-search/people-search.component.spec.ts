@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { throwError } from 'rxjs'
 
 import { PeopleSearchComponent } from '../people-search/people-search.component'
 import { PersonService } from '../services/person.service';
@@ -78,6 +79,22 @@ describe('PeopleSearchComponent', () => {
     setTimeout(() => {
       expect(personServiceSpy.searchByName).not.toHaveBeenCalledWith(firstSearchText);
       expect(personServiceSpy.searchByName).toHaveBeenCalledWith(secondSearchText);
+      done();
+    }, 500);
+
+  }));
+
+  it('should set error to true on error', ((done) => {
+
+    const searchText: string = 'search';
+
+    personServiceSpy.searchByName.and.returnValue(throwError(new Error()));
+
+    component.onSearchBoxKeyupEvent.next(searchText);
+
+    // wait for debounce
+    setTimeout(() => {
+      expect(component.error).toBeTruthy();
       done();
     }, 500);
 
