@@ -30,14 +30,7 @@ namespace PeopleSearch.Persistence.Repositories
 
         public async Task CreatePersonAsync(Person person)
         {
-            var personEntity = _mapper.Map<Entities.Person>(person);
-            var addressEntity = personEntity.Address;
-            personEntity.Address = null;
-
-            var personEntry = await _peopleSearchContext.People.AddAsync(personEntity);
-            addressEntity.PersonId = personEntry.Entity.Id;
-            await _peopleSearchContext.Addresses.AddAsync(addressEntity);
-
+            await _peopleSearchContext.People.AddAsync(_mapper.Map<Entities.Person>(person));
             await _peopleSearchContext.SaveChangesAsync();
         }
     }
