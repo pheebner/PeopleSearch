@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using PeopleSearch.Business.Interfaces;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Linq;
-using AutoMapper;
 using PeopleSearch.Models;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace PeopleSearch.Controllers
 {
@@ -25,5 +25,9 @@ namespace PeopleSearch.Controllers
         public async Task<IEnumerable<Person>> SearchByName(string searchText) =>
             (await _personService.SearchByNameAsync(searchText))
                 .Select(p => _mapper.Map<Person>(p)).ToList();
+
+        [HttpPost("[action]")]
+        public async Task CreatePerson([FromBody] Person person) =>
+            await _personService.CreatePersonAsync(_mapper.Map<Domain.Dto.Person>(person));
     }
 }

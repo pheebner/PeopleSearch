@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using PeopleSearch.Attributes;
+using System.ComponentModel.DataAnnotations;
 
 namespace PeopleSearch.Models
 {
@@ -11,10 +12,11 @@ namespace PeopleSearch.Models
         [StringLength(50)]
         public string LastName { get; set; }
         [Required]
+        [Range(1, 10000)]
         public int Age { get; set; }
         [Required]
         public string Interests { get; set; }
-        [Url]
+        [PersonImageUrl]
         [StringLength(50)]
         public string PictureUrl { get; set; }
         [Required]
