@@ -1,0 +1,131 @@
+<h1>Create a Person</h1>
+
+<form (ngSubmit)="onSubmit()" class="mb-4" #createPersonForm="ngForm">
+  <div class="form-group">
+    <label for="first-name">First Name</label>
+    <input type="text" class="form-control" id="first-name" name="first-name"
+           [(ngModel)]="model.firstName" #firstName="ngModel"
+           required maxlength="50" />
+    <div *ngIf="firstName.invalid && !firstName.pristine"
+         class="alert alert-danger">
+      <div *ngIf="firstName.errors.required">
+        First Name is required.
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="last-name">Last Name</label>
+    <input type="text" class="form-control" id="last-name" name="last-name"
+           [(ngModel)]="model.lastName" #lastName="ngModel"
+           required maxlength="50" />
+    <div *ngIf="lastName.invalid && !lastName.pristine"
+         class="alert alert-danger">
+      <div *ngIf="lastName.errors.required">
+        Last Name is required.
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="age">Age</label>
+    <input type="number" class="form-control" id="age" name="age"
+           [(ngModel)]="model.age" #age="ngModel"
+           required min="1" max="10000"/>
+    <div *ngIf="age.invalid && !age.pristine"
+         class="alert alert-danger">
+      <div *ngIf="age.errors.required">
+        Age is required.
+      </div>
+      <!-- TODO These do not work...-->
+      <div *ngIf="age.errors.min">
+        Age cannot be less than 1 year
+      </div>
+      <div *ngIf="age.errors.max">
+        Age cannot be more than 10,000 years
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="interests">Interests</label>
+    <input type="text" class="form-control" id="interests" name="interests"
+           [(ngModel)]="model.interests" #interests="ngModel"
+           required />
+    <div *ngIf="interests.invalid && !interests.pristine"
+         class="alert alert-danger">
+      <div *ngIf="interests.errors.required">
+        Interests is required.
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="street">Street</label>
+    <input type="text" class="form-control" id="street" name="street"
+           [(ngModel)]="model.street" #street="ngModel"
+           required maxlength="100" />
+    <div *ngIf="street.invalid && !street.pristine"
+         class="alert alert-danger">
+      <div *ngIf="street.errors.required">
+        Street is required.
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="city">City</label>
+    <input type="text" class="form-control" id="city" name="city"
+           [(ngModel)]="model.city" #city="ngModel"
+           required maxlength="60" />
+    <div *ngIf="city.invalid && !city.pristine"
+         class="alert alert-danger">
+      <div *ngIf="city.errors.required">
+        City is required.
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="state">State</label>
+    <input type="text" class="form-control" id="state" name="state"
+           [(ngModel)]="model.state" #state="ngModel"
+           required maxlength="2" />
+    <div *ngIf="state.invalid && !state.pristine"
+         class="alert alert-danger">
+      <div *ngIf="state.errors.required">
+        State is required.
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="zip-code">Zip Code</label>
+    <input type="text" class="form-control" id="zip-code" name="zip-code"
+           [(ngModel)]="model.zipCode" #zipCode="ngModel"
+           required maxlength="9" />
+    <div *ngIf="zipCode.invalid && !zipCode.pristine"
+         class="alert alert-danger">
+      <div *ngIf="zipCode.errors.required">
+        Zip Code is required.
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="country">Country</label>
+    <input type="text" class="form-control" id="country" name="country"
+           [(ngModel)]="model.country" #country="ngModel"
+           required maxlength="55" />
+    <div *ngIf="country.invalid && !country.pristine"
+         class="alert alert-danger">
+      <div *ngIf="country.errors.required">
+        Country is required.
+      </div>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-success"
+          [disabled]="!createPersonForm.form.valid">Submit</button>
+
+</form>

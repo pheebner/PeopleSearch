@@ -7,12 +7,14 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { PeopleSearchComponent } from './people-search/people-search.component';
+import { CreatePersonComponent } from './create-person/create-person.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
-    PeopleSearchComponent
+    PeopleSearchComponent,
+    CreatePersonComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -20,6 +22,7 @@ import { PeopleSearchComponent } from './people-search/people-search.component';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: PeopleSearchComponent, pathMatch: 'full' },
+      { path: 'create-person', component: CreatePersonComponent }
     ])
   ],
   providers: [],

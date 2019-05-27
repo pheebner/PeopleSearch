@@ -16,6 +16,7 @@ namespace PeopleSearch.Models
         public int Age { get; set; }
         [Required]
         public string Interests { get; set; }
+        [Required]
         [PersonImageUrl]
         [StringLength(50)]
         public string PictureUrl { get; set; }
