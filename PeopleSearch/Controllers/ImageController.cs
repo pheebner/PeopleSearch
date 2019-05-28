@@ -37,7 +37,7 @@ namespace PeopleSearch.Controllers
                 await file.CopyToAsync(stream);
             }
 
-            return Ok(simpleFilePath);
+            return Ok(new { pictureUrl = simpleFilePath });
         }
     }
 }

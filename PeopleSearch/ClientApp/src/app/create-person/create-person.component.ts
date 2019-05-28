@@ -28,7 +28,8 @@ export class CreatePersonComponent implements OnInit {
     let uploadData = new FormData();
     uploadData.append("file", this.selectedFile);
     this.httpClient.post(`${this.imageApiUrl}/Upload`, uploadData)
-      .subscribe(results => {
+      .subscribe((results: ImageUploadResponse) => {
+        this.model.pictureUrl = results.pictureUrl;
         this.uploadingPicture = false;
       },
         err => this.uploadingPicture = false,
@@ -42,4 +43,8 @@ export class CreatePersonComponent implements OnInit {
     alert("Submti9");
   }
 
+}
+
+export interface ImageUploadResponse {
+  pictureUrl: string;
 }
