@@ -3,6 +3,19 @@
 <form (ngSubmit)="onSubmit()" class="container" #createPersonForm="ngForm">
   <div class="row">
     <div class="col">
+      <input type="file" class="d-none" accept="image/*" (change)="onPictureSelected($event)" #fileInput>
+      <input type="text" class="d-none" id="picture-url" name="picture-url"
+             [(ngModel)]="model.pictureUrl" #pictureUrl="ngModel"
+             required />
+      <button type="button" class="btn btn-primary mt-2 mb-3"
+              (click)="fileInput.click()">Choose Profile Picture</button>
+      <div class="mb-3">
+        <span>{{ selectedFile?.name }}</span>
+      </div>
+      <img [src]="model.pictureUrl" height="100" *ngIf="model.pictureUrl">
+    </div>
+
+    <div class="col">
 
       <div class="form-group">
         <label for="first-name">First Name</label>

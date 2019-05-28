@@ -8,10 +8,23 @@ import { CreatePersonModel } from './create-person-model';
 })
 export class CreatePersonComponent implements OnInit {
   public model: CreatePersonModel = new CreatePersonModel();
+  public selectedFile: File;
 
-  constructor() { }
+  onPictureSelected(event) {
+    if (event.target.files.length === 0) {
+      return;
+    }
+  }
+
+  onUpload() {
+    // upload code goes here
+  }
 
   ngOnInit() {
+  }
+
+  onSubmit() {
+    alert("Submti9");
   }
 
 }
