@@ -2,6 +2,9 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { CreatePersonModel } from './create-person-model';
 import { HttpClient } from '@angular/common/http'
 
+import { Subject, of } from 'rxjs';
+import { tap, map, switchAll, catchError, filter } from 'rxjs/operators';
+
 @Component({
   selector: 'app-create-person',
   templateUrl: './create-person.component.html',
@@ -9,8 +12,11 @@ import { HttpClient } from '@angular/common/http'
 })
 export class CreatePersonComponent implements OnInit {
   public model: CreatePersonModel = new CreatePersonModel();
-  public selectedFile: File;
-  public uploadingPicture: boolean;
+  public selectedFileName: string;
+  public onImageSelectionChanged = new Subject<File[]>();
+  public imageUploading: boolean;
+  public imageUploadError: boolean = false;
+  public submitted: boolean = false;
 
   private imageApiUrl: string;
 
@@ -18,29 +24,43 @@ export class CreatePersonComponent implements OnInit {
     this.imageApiUrl = `${baseUrl}/api/Image`;
   }
 
-  onPictureSelected(event) {
-    if (event.target.files.length === 0) {
-      return;
-    }
-
-    this.uploadingPicture = true;
-    this.selectedFile = event.target.files[0];
-    let uploadData = new FormData();
-    uploadData.append("file", this.selectedFile);
-    this.httpClient.post(`${this.imageApiUrl}/Upload`, uploadData)
-      .subscribe((results: ImageUploadResponse) => {
-        this.model.pictureUrl = results.pictureUrl;
-        this.uploadingPicture = false;
-      },
-        err => this.uploadingPicture = false,
-        () => this.uploadingPicture = false);
-  }
-
   ngOnInit() {
+    this.onImageSelectionChanged
+      .pipe(
+        filter((files: File[]) => files.length === 1),
+        map((files: File[]) => files[0]),
+        tap((file: File) => {
+          this.imageUploading = true;
+          this.imageUploadError = false;
+          this.selectedFileName = file.name;
+        }),
+        map((file: File) => {
+            const uploadData = new FormData();
+            uploadData.append("file", file);
+            return this.httpClient.post(`${this.imageApiUrl}/Upload`, uploadData)
+              .pipe(catchError(err => {
+                console.log(err);
+                this.imageUploadError = true;
+                this.selectedFileName = null;
+                return of(null as ImageUploadResponse);
+              }));
+          }
+        ),
+        switchAll<ImageUploadResponse>()
+      )
+      .subscribe(
+        results => {
+          if (results != null) {
+            this.model.pictureUrl = results.pictureUrl;
+          }
+
+          this.imageUploading = false;
+        }
+      );
   }
 
   onSubmit() {
-    alert("Submti9");
+    this.submitted = true;
   }
 
 }

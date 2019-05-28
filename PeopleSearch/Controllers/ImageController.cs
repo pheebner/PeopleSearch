@@ -29,7 +29,7 @@ namespace PeopleSearch.Controllers
 
             var fileExtension = file.FileName.Split('.').Last();
             var newFileName = $"{Guid.NewGuid().ToString()}.{fileExtension}";
-            var simpleFilePath = Path.Combine("images", newFileName);
+            var simpleFilePath = Path.Combine("user-images", newFileName);
             var filePath = Path.Combine(_hostingEnvironment.WebRootPath, simpleFilePath);
 
             using (var stream = new FileStream(filePath, FileMode.Create))

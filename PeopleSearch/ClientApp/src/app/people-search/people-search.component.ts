@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Subject, of, Observable } from 'rxjs';
+import { Subject, of } from 'rxjs';
 import { debounceTime, distinctUntilChanged, tap, map, switchAll, catchError } from 'rxjs/operators';
 import { Person } from '../people-search/person.model';
 import { PersonService } from '../services/person.service';

@@ -3,16 +3,26 @@
 <form (ngSubmit)="onSubmit()" class="container" #createPersonForm="ngForm">
   <div class="row">
     <div class="col">
-      <input type="file" class="d-none" accept="image/*" (change)="onPictureSelected($event)" #fileInput>
+      <input type="file" class="d-none" accept="image/*" (change)="onImageSelectionChanged.next($event.target.files)" #fileInput>
       <input type="text" class="d-none" id="picture-url" name="picture-url"
              [(ngModel)]="model.pictureUrl" #pictureUrl="ngModel"
              required />
       <button type="button" class="btn btn-primary mt-2 mb-3"
               (click)="fileInput.click()">Choose Profile Picture</button>
-      <div class="mb-3">
-        <span>{{ selectedFile?.name }}</span>
+      <div *ngIf="imageUploading" class="spinner-border spinner-border-sm ml-2" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div class="mb-3" *ngIf="!imageUploading">
+        <span>{{ selectedFileName }}</span>
       </div>
       <img [src]="model.pictureUrl" height="100" *ngIf="model.pictureUrl">
+      <p *ngIf="imageUploadError" class="text-danger font-weight-bold">An error occurred during file upload.  Please try again.</p>
+      <div *ngIf="pictureUrl.invalid && (!pictureUrl.pristine || submitted)"
+        class="alert alert-danger">
+        <div *ngIf="pictureUrl.errors.required">
+          A profile picture is required.
+        </div>
+    </div>
     </div>
 
     <div class="col">
@@ -22,7 +32,7 @@
         <input type="text" class="form-control" id="first-name" name="first-name"
                [(ngModel)]="model.firstName" #firstName="ngModel"
                required maxlength="50" />
-        <div *ngIf="firstName.invalid && !firstName.pristine"
+        <div *ngIf="firstName.invalid && (!firstName.pristine || submitted)"
              class="alert alert-danger">
           <div *ngIf="firstName.errors.required">
             First Name is required.
@@ -35,7 +45,7 @@
         <input type="text" class="form-control" id="last-name" name="last-name"
                [(ngModel)]="model.lastName" #lastName="ngModel"
                required maxlength="50" />
-        <div *ngIf="lastName.invalid && !lastName.pristine"
+        <div *ngIf="lastName.invalid && (!lastName.pristine || submitted)"
              class="alert alert-danger">
           <div *ngIf="lastName.errors.required">
             Last Name is required.
@@ -48,7 +58,7 @@
         <input type="number" class="form-control" id="age" name="age"
                [(ngModel)]="model.age" #age="ngModel"
                required [range]="[1, 10000]" />
-        <div *ngIf="age.invalid && !age.pristine"
+        <div *ngIf="age.invalid && (!age.pristine || submitted)"
              class="alert alert-danger">
           <div *ngIf="age.errors.required">
             Age is required.
@@ -64,7 +74,7 @@
         <input type="text" class="form-control" id="interests" name="interests"
                [(ngModel)]="model.interests" #interests="ngModel"
                required />
-        <div *ngIf="interests.invalid && !interests.pristine"
+        <div *ngIf="interests.invalid && (!interests.pristine || submitted)"
              class="alert alert-danger">
           <div *ngIf="interests.errors.required">
             Interests is required.
@@ -80,7 +90,7 @@
         <input type="text" class="form-control" id="street" name="street"
                [(ngModel)]="model.street" #street="ngModel"
                required maxlength="100" />
-        <div *ngIf="street.invalid && !street.pristine"
+        <div *ngIf="street.invalid && (!street.pristine || submitted)"
              class="alert alert-danger">
           <div *ngIf="street.errors.required">
             Street is required.
@@ -93,7 +103,7 @@
         <input type="text" class="form-control" id="city" name="city"
                [(ngModel)]="model.city" #city="ngModel"
                required maxlength="60" />
-        <div *ngIf="city.invalid && !city.pristine"
+        <div *ngIf="city.invalid && (!city.pristine || submitted)"
              class="alert alert-danger">
           <div *ngIf="city.errors.required">
             City is required.
@@ -106,7 +116,7 @@
         <input type="text" class="form-control" id="state" name="state"
                [(ngModel)]="model.state" #state="ngModel"
                required maxlength="2" />
-        <div *ngIf="state.invalid && !state.pristine"
+        <div *ngIf="state.invalid && (!state.pristine || submitted)"
              class="alert alert-danger">
           <div *ngIf="state.errors.required">
             State is required.
@@ -119,7 +129,7 @@
         <input type="text" class="form-control" id="zip-code" name="zip-code"
                [(ngModel)]="model.zipCode" #zipCode="ngModel"
                required maxlength="9" />
-        <div *ngIf="zipCode.invalid && !zipCode.pristine"
+        <div *ngIf="zipCode.invalid && (!zipCode.pristine || submitted)"
              class="alert alert-danger">
           <div *ngIf="zipCode.errors.required">
             Zip Code is required.
@@ -132,7 +142,7 @@
         <input type="text" class="form-control" id="country" name="country"
                [(ngModel)]="model.country" #country="ngModel"
                required maxlength="55" />
-        <div *ngIf="country.invalid && !country.pristine"
+        <div *ngIf="country.invalid && (!country.pristine || submitted)"
              class="alert alert-danger">
           <div *ngIf="country.errors.required">
             Country is required.
@@ -144,8 +154,7 @@
 
   <div class="row">
     <div class="col">
-      <button type="submit" class="btn btn-success"
-              [disabled]="!createPersonForm.form.valid">
+      <button type="submit" class="btn btn-success">
         Submit
       </button>
     </div>
