@@ -5,6 +5,8 @@ namespace PeopleSearch.Models
 {
     public class Person
     {
+        [Key]
+        public int Id { get; set; }
         [Required]
         [StringLength(50)]
         public string FirstName { get; set; }
@@ -18,7 +20,7 @@ namespace PeopleSearch.Models
         public string Interests { get; set; }
         [Required]
         [PersonImageUrl]
-        [StringLength(50)]
+        [StringLength(100)]
         public string PictureUrl { get; set; }
         [Required]
         public Address Address { get; set; }

@@ -39,11 +39,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\src\app\create-person\create-address-model.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\people-search\address.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\create-person\models\create-address.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\create-person\models\image-upload-response.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\people-search\models\address.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\people-search\people-search.component.spec.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\people-search\people-search.component.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\people-search\person.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\people-search\models\person.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\testing\async-observable-helper.ts" />
   </ItemGroup>
 

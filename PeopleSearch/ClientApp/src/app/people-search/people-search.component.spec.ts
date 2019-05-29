@@ -3,7 +3,7 @@ import { throwError } from 'rxjs'
 
 import { PeopleSearchComponent } from '../people-search/people-search.component'
 import { PersonService } from '../services/person.service';
-import { Person } from '../people-search/person.model';
+import { Person } from '../people-search/models/person.model';
 import { asyncData } from '../testing/async-observable-helper';
 import { setTimeout } from 'timers';
 

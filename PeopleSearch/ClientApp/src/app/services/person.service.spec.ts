@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClient } from '@angular/common/http'
 
 import { PersonService } from '../services/person.service';
-import { Person } from '../people-search/person.model';
+import { Person } from '../people-search/models/person.model';
 import { asyncData } from '../testing/async-observable-helper';
 
 describe('PersonService', () => {

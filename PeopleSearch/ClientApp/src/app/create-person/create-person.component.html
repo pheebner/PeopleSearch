@@ -1,12 +1,13 @@
 <h1>Create a Person</h1>
 
-<form (ngSubmit)="onSubmit()" class="container" #createPersonForm="ngForm">
+<form (ngSubmit)="onSubmit(createPersonForm.form.valid)" class="container" #createPersonForm="ngForm" *ngIf="!created">
   <div class="row">
+
     <div class="col">
       <input type="file" class="d-none" accept="image/*" (change)="onImageSelectionChanged.next($event.target.files)" #fileInput>
       <input type="text" class="d-none" id="picture-url" name="picture-url"
              [(ngModel)]="model.pictureUrl" #pictureUrl="ngModel"
-             required />
+             required/>
       <button type="button" class="btn btn-primary mt-2 mb-3"
               (click)="fileInput.click()">Choose Profile Picture</button>
       <div *ngIf="imageUploading" class="spinner-border spinner-border-sm ml-2" role="status">
@@ -16,13 +17,13 @@
         <span>{{ selectedFileName }}</span>
       </div>
       <img [src]="model.pictureUrl" height="100" *ngIf="model.pictureUrl">
-      <p *ngIf="imageUploadError" class="text-danger font-weight-bold">An error occurred during file upload.  Please try again.</p>
+      <p *ngIf="imageUploadError" class="text-danger font-weight-bold">An error occurred during file upload</p>
       <div *ngIf="pictureUrl.invalid && (!pictureUrl.pristine || submitted)"
-        class="alert alert-danger">
+           class="alert alert-danger">
         <div *ngIf="pictureUrl.errors.required">
           A profile picture is required.
         </div>
-    </div>
+      </div>
     </div>
 
     <div class="col">
@@ -31,7 +32,7 @@
         <label for="first-name">First Name</label>
         <input type="text" class="form-control" id="first-name" name="first-name"
                [(ngModel)]="model.firstName" #firstName="ngModel"
-               required maxlength="50" />
+               required maxlength="50"/>
         <div *ngIf="firstName.invalid && (!firstName.pristine || submitted)"
              class="alert alert-danger">
           <div *ngIf="firstName.errors.required">
@@ -44,7 +45,7 @@
         <label for="last-name">Last Name</label>
         <input type="text" class="form-control" id="last-name" name="last-name"
                [(ngModel)]="model.lastName" #lastName="ngModel"
-               required maxlength="50" />
+               required maxlength="50"/>
         <div *ngIf="lastName.invalid && (!lastName.pristine || submitted)"
              class="alert alert-danger">
           <div *ngIf="lastName.errors.required">
@@ -57,7 +58,7 @@
         <label for="age">Age</label>
         <input type="number" class="form-control" id="age" name="age"
                [(ngModel)]="model.age" #age="ngModel"
-               required [range]="[1, 10000]" />
+               required [range]="[1, 10000]"/>
         <div *ngIf="age.invalid && (!age.pristine || submitted)"
              class="alert alert-danger">
           <div *ngIf="age.errors.required">
@@ -73,7 +74,7 @@
         <label for="interests">Interests</label>
         <input type="text" class="form-control" id="interests" name="interests"
                [(ngModel)]="model.interests" #interests="ngModel"
-               required />
+               required/>
         <div *ngIf="interests.invalid && (!interests.pristine || submitted)"
              class="alert alert-danger">
           <div *ngIf="interests.errors.required">
@@ -85,11 +86,12 @@
     </div>
 
     <div class="col">
+
       <div class="form-group">
         <label for="street">Street</label>
         <input type="text" class="form-control" id="street" name="street"
-               [(ngModel)]="model.street" #street="ngModel"
-               required maxlength="100" />
+               [(ngModel)]="model.address.street" #street="ngModel"
+               required maxlength="100"/>
         <div *ngIf="street.invalid && (!street.pristine || submitted)"
              class="alert alert-danger">
           <div *ngIf="street.errors.required">
@@ -101,8 +103,8 @@
       <div class="form-group">
         <label for="city">City</label>
         <input type="text" class="form-control" id="city" name="city"
-               [(ngModel)]="model.city" #city="ngModel"
-               required maxlength="60" />
+               [(ngModel)]="model.address.city" #city="ngModel"
+               required maxlength="60"/>
         <div *ngIf="city.invalid && (!city.pristine || submitted)"
              class="alert alert-danger">
           <div *ngIf="city.errors.required">
@@ -114,8 +116,8 @@
       <div class="form-group">
         <label for="state">State</label>
         <input type="text" class="form-control" id="state" name="state"
-               [(ngModel)]="model.state" #state="ngModel"
-               required maxlength="2" />
+               [(ngModel)]="model.address.state" #state="ngModel"
+               required maxlength="2"/>
         <div *ngIf="state.invalid && (!state.pristine || submitted)"
              class="alert alert-danger">
           <div *ngIf="state.errors.required">
@@ -127,8 +129,8 @@
       <div class="form-group">
         <label for="zip-code">Zip Code</label>
         <input type="text" class="form-control" id="zip-code" name="zip-code"
-               [(ngModel)]="model.zipCode" #zipCode="ngModel"
-               required maxlength="9" />
+               [(ngModel)]="model.address.zipCode" #zipCode="ngModel"
+               required maxlength="9"/>
         <div *ngIf="zipCode.invalid && (!zipCode.pristine || submitted)"
              class="alert alert-danger">
           <div *ngIf="zipCode.errors.required">
@@ -140,8 +142,8 @@
       <div class="form-group">
         <label for="country">Country</label>
         <input type="text" class="form-control" id="country" name="country"
-               [(ngModel)]="model.country" #country="ngModel"
-               required maxlength="55" />
+               [(ngModel)]="model.address.country" #country="ngModel"
+               required maxlength="55"/>
         <div *ngIf="country.invalid && (!country.pristine || submitted)"
              class="alert alert-danger">
           <div *ngIf="country.errors.required">
@@ -149,15 +151,25 @@
           </div>
         </div>
       </div>
+
     </div>
   </div>
 
   <div class="row">
     <div class="col">
-      <button type="submit" class="btn btn-success">
+      <button type="submit" class="btn btn-success" [disabled]="creating">
         Submit
       </button>
+      <div *ngIf="creating" class="spinner-border spinner-border-sm ml-2" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <p class="text-danger font-weight-bold" *ngIf="createError">An error occurred while creating the person.</p>
     </div>
   </div>
 
 </form>
+
+<div *ngIf="created">
+  <p>Person "{{ model.firstName }} {{ model.lastName }}" has been created!</p>
+  <button type="button" class="btn btn-primary" (click)="reset()">Create Another</button>
+</div>

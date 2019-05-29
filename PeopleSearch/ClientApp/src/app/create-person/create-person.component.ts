@@ -1,6 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { CreatePersonModel } from './create-person-model';
-import { HttpClient } from '@angular/common/http'
+import { CreatePersonModel } from './models/create-person.model';
+import { PersonService } from '../services/person.service';
+import { ImageService } from '../services/image.service';
+import { ImageUploadResponse } from './models/image-upload-response.model';
 
 import { Subject, of } from 'rxjs';
 import { tap, map, switchAll, catchError, filter } from 'rxjs/operators';
@@ -17,11 +19,11 @@ export class CreatePersonComponent implements OnInit {
   public imageUploading: boolean;
   public imageUploadError: boolean = false;
   public submitted: boolean = false;
+  public created: boolean = false;
+  public creating: boolean = false;
+  public createError: boolean = false;
 
-  private imageApiUrl: string;
-
-  constructor(private httpClient: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    this.imageApiUrl = `${baseUrl}/api/Image`;
+  constructor(private imageService: ImageService, private personService: PersonService) {
   }
 
   ngOnInit() {
@@ -35,9 +37,7 @@ export class CreatePersonComponent implements OnInit {
           this.selectedFileName = file.name;
         }),
         map((file: File) => {
-            const uploadData = new FormData();
-            uploadData.append("file", file);
-            return this.httpClient.post(`${this.imageApiUrl}/Upload`, uploadData)
+            return this.imageService.upload(file)
               .pipe(catchError(err => {
                 console.log(err);
                 this.imageUploadError = true;
@@ -59,12 +59,37 @@ export class CreatePersonComponent implements OnInit {
       );
   }
 
-  onSubmit() {
+  onSubmit(valid: boolean) {
     this.submitted = true;
+
+    if (!valid) {
+      return;
+    }
+
+    this.creating = true;
+    this.createError = false;
+
+    this.personService.createPerson(this.model)
+      .subscribe(() => {
+          this.created = true;
+          this.creating = false;
+        },
+        err => {
+          console.log(err);
+          this.creating = false;
+          this.createError = true;
+        });
   }
 
-}
+  reset() {
+    this.model = new CreatePersonModel();
+    this.selectedFileName = null;
+    this.imageUploading = false;
+    this.imageUploadError = false;
+    this.submitted = false;
+    this.created = false;
+    this.creating = false;
+    this.createError = false;
+  }
 
-export interface ImageUploadResponse {
-  pictureUrl: string;
 }
