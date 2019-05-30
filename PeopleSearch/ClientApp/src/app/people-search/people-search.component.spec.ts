@@ -1,10 +1,8 @@
 import { TestBed } from '@angular/core/testing';
-import { throwError } from 'rxjs'
-
-import { PeopleSearchComponent } from '../people-search/people-search.component'
+import { throwError, of } from 'rxjs';
+import { PeopleSearchComponent } from '../people-search/people-search.component';
 import { PersonService } from '../services/person.service';
-import { Person } from '../people-search/person.model';
-import { asyncData } from '../testing/async-observable-helper';
+import { Person } from '../people-search/models/person.model';
 import { setTimeout } from 'timers';
 
 describe('PeopleSearchComponent', () => {
@@ -27,14 +25,14 @@ describe('PeopleSearchComponent', () => {
     expect(component).toBeDefined();
   }));
 
-  it('should call person service and assign results to people', ((done) => {
+  it('should call person service and assign results to people', ((done: () => void) => {
     const expectedPeople: Person[] =
       [{ firstName: 'A', lastName: 'A', age: 1, interests: 'A', pictureUrl: 'A', address: null },
       { firstName: 'B', lastName: 'B', age: 2, interests: 'B', pictureUrl: 'B', address: null }];
 
-    const searchText: string = 'searchText';
+    const searchText = 'searchText';
 
-    personServiceSpy.searchByName.and.returnValue(asyncData(expectedPeople));
+    personServiceSpy.searchByName.and.returnValue(of(expectedPeople));
 
     component.onSearchBoxKeyupEvent.next(searchText);
 
@@ -47,13 +45,13 @@ describe('PeopleSearchComponent', () => {
 
   }));
 
-  it('should set loading to true and then back to false', ((done) => {
+  it('should set loading to true and then back to false', ((done: () => void) => {
 
-    const searchText: string = 'search';
+    const searchText = 'search';
 
     personServiceSpy.searchByName.and.callFake(() => {
       expect(component.loading).toBeTruthy();
-    }).and.returnValue(asyncData([]));
+    }).and.returnValue(of([]));
 
     component.onSearchBoxKeyupEvent.next(searchText);
 
@@ -65,12 +63,12 @@ describe('PeopleSearchComponent', () => {
 
   }));
 
-  it('should only call service with last keyup text value', ((done) => {
+  it('should only call service with last keyup text value', ((done: () => void) => {
 
-    const firstSearchText: string = 'first';
-    const secondSearchText: string = 'second';
+    const firstSearchText = 'first';
+    const secondSearchText = 'second';
 
-    personServiceSpy.searchByName.and.returnValue(asyncData([]));
+    personServiceSpy.searchByName.and.returnValue(of([]));
 
     component.onSearchBoxKeyupEvent.next(firstSearchText);
     component.onSearchBoxKeyupEvent.next(secondSearchText);
@@ -84,9 +82,9 @@ describe('PeopleSearchComponent', () => {
 
   }));
 
-  it('should set error to true on error', ((done) => {
+  it('should set error to true on error', ((done: () => void) => {
 
-    const searchText: string = 'search';
+    const searchText = 'search';
 
     personServiceSpy.searchByName.and.returnValue(throwError(new Error()));
 

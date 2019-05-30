@@ -36,5 +36,22 @@ namespace PeopleSearch.Tests.Controllers
             var expectedFirstNames = expectedPeople.Select(p => p.FirstName).ToList();
             actualFirstNames.Should().BeEquivalentTo(expectedFirstNames);
         }
+
+        [Test]
+        public async Task CreatePerson_MapsModelToDtoAndCallsServiceMethod()
+        {
+            var person = _fixture.Create<Models.Person>();
+            var personDto = _fixture.Create<Domain.Dto.Person>();
+            var personServiceMock = new Mock<IPersonService>();
+            personServiceMock.Setup(s => s.CreatePersonAsync(personDto)).Returns(Task.CompletedTask).Verifiable();
+            var mapperMock = new Mock<IMapper>();
+            mapperMock.Setup(m => m.Map<Domain.Dto.Person>(person)).Returns(personDto).Verifiable();
+            var sut = new PersonController(personServiceMock.Object, mapperMock.Object);
+
+            await sut.CreatePerson(person);
+
+            personServiceMock.Verify();
+            mapperMock.Verify();
+        }
     }
 }

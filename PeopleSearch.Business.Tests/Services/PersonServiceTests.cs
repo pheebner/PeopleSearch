@@ -1,13 +1,12 @@
 ﻿using AutoFixture;
-using AutoMapper;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
 using PeopleSearch.Business.Services;
+using PeopleSearch.Domain.Dto;
 using PeopleSearch.Persistence.Repositories.Interfaces;
 using System.Linq;
 using System.Threading.Tasks;
-using PeopleSearch.Domain.Dto;
 
 namespace PeopleSearch.Business.Tests.Services
 {
@@ -29,6 +28,19 @@ namespace PeopleSearch.Business.Tests.Services
 
             personRepositoryMock.Verify();
             actualPeople.Should().BeEquivalentTo(expectedPeople);
+        }
+
+        [Test]
+        public async Task CreatePersonAsync_CallsRepositoryWithPassedInPersonObject()
+        {
+            var person = _fixture.Create<Person>();
+            var personRepositoryMock = new Mock<IPersonRepository>();
+            personRepositoryMock.Setup(r => r.CreatePersonAsync(person)).Returns(Task.CompletedTask).Verifiable();
+            var sut = new PersonService(personRepositoryMock.Object);
+
+            await sut.CreatePersonAsync(person);
+
+            personRepositoryMock.Verify();
         }
     }
 }

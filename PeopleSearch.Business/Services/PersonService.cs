@@ -16,5 +16,6 @@ namespace PeopleSearch.Business.Services
         }
 
         public async Task<IEnumerable<Person>> SearchByNameAsync(string searchText) => await _personRepository.SearchByNameAsync(searchText);
+        public async Task CreatePersonAsync(Person person) => await _personRepository.CreatePersonAsync(person);
     }
 }

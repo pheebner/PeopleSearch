@@ -4,6 +4,8 @@ namespace PeopleSearch.Models
 {
     public class Address
     {
+        [Key]
+        public int Id { get; set; }
         [Required]
         [StringLength(60)]
         public string City { get; set; }

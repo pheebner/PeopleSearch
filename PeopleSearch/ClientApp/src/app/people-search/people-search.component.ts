@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Subject, of, Observable } from 'rxjs';
+import { Subject, of } from 'rxjs';
 import { debounceTime, distinctUntilChanged, tap, map, switchAll, catchError } from 'rxjs/operators';
-import { Person } from '../people-search/person.model';
+import { Person } from '../people-search/models/person.model';
 import { PersonService } from '../services/person.service';
 
 @Component({
@@ -10,8 +10,8 @@ import { PersonService } from '../services/person.service';
 })
 export class PeopleSearchComponent {
   public people: Person[] = [];
-  public loading: boolean = false;
-  public error: boolean = false;
+  public loading = false;
+  public error = false;
   public onSearchBoxKeyupEvent: Subject<string> = new Subject<string>();
 
   constructor(private personService: PersonService) {
@@ -26,7 +26,7 @@ export class PeopleSearchComponent {
           this.loading = true;
           this.error = false;
         }),
-        map((searchText: string) => 
+        map((searchText: string) =>
           this.personService.searchByName(searchText)
             .pipe(catchError(err => {
               console.log(err);

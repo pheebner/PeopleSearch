@@ -27,5 +27,11 @@ namespace PeopleSearch.Persistence.Repositories
                 .ToListAsync())
                 .Select(p => _mapper.Map<Person>(p)).ToList();
         }
+
+        public async Task CreatePersonAsync(Person person)
+        {
+            await _peopleSearchContext.People.AddAsync(_mapper.Map<Entities.Person>(person));
+            await _peopleSearchContext.SaveChangesAsync();
+        }
     }
 }

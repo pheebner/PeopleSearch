@@ -1,6 +1,6 @@
 <h1>Search for a Person</h1>
 
-<input (keyup)="onSearchBoxKeyupEvent.next($event.target.value)" class="mt-1" placeholder="Type a name"/>
+<input (keyup)="onSearchBoxKeyupEvent.next($event.target.value)" class="mt-1 form-control w-auto d-inline" placeholder="Type a name" />
 <div *ngIf="loading" class="spinner-border spinner-border-sm ml-2" role="status">
   <span class="sr-only">Loading...</span>
 </div>
@@ -17,11 +17,11 @@
   </thead>
   <tbody>
     <tr *ngFor="let person of people">
-      <td><img height="100" width="100" [src]="person.pictureUrl" alt="Picture of {{ person.firstName }} {{ person.lastName }}"/></td>
+      <td><img height="100" width="100" [src]="person.pictureUrl" alt="Picture of {{ person.firstName }} {{ person.lastName }}" /></td>
       <td>{{ person.firstName }} {{ person.lastName }}</td>
       <td>
         {{ person.address.street }}
-        <br/>
+        <br />
         {{ person.address.city }}, {{ person.address.state }} {{ person.address.zipCode }}
       </td>
       <td>{{ person.age }}</td>

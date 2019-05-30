@@ -7,5 +7,6 @@ namespace PeopleSearch.Business.Interfaces
     public interface IPersonService
     {
         Task<IEnumerable<Person>> SearchByNameAsync(string searchText);
+        Task CreatePersonAsync(Person personDto);
     }
 }

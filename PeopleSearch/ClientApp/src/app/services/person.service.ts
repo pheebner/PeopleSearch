@@ -1,7 +1,8 @@
 import { Injectable, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
-import { Observable, of } from 'rxjs'
-import { Person } from '../people-search/person.model'
+import { HttpClient } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { Person } from '../people-search/models/person.model';
+import { CreatePersonModel } from '../create-person/models/create-person.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +19,10 @@ export class PersonService {
       return of([]);
     }
 
-    const queryUrl = `${this.personApiUrl}/SearchByName?searchText=${searchText}`;
+    return this.httpClient.get<Person[]>(`${this.personApiUrl}/SearchByName?searchText=${searchText}`);
+  }
 
-    return this.httpClient.get<Person[]>(queryUrl);
+  createPerson(createPersonModel: CreatePersonModel): Observable<Object> {
+    return this.httpClient.post(`${this.personApiUrl}/CreatePerson`, createPersonModel);
   }
 }

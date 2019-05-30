@@ -7,5 +7,6 @@ namespace PeopleSearch.Persistence.Repositories.Interfaces
     public interface IPersonRepository
     {
         Task<IEnumerable<Person>> SearchByNameAsync(string searchText);
+        Task CreatePersonAsync(Person person);
     }
 }
