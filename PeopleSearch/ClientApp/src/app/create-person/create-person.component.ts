@@ -2,8 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { CreatePersonModel } from './models/create-person.model';
 import { PersonService } from '../services/person.service';
 import { ImageService } from '../services/image.service';
-import { ImageUploadResponse } from './models/image-upload-response.model';
-
+import { ImageUploadResponse } from '../services/models/image-upload-response.model';
 import { Subject, of } from 'rxjs';
 import { tap, map, switchAll, catchError, filter } from 'rxjs/operators';
 
@@ -17,11 +16,11 @@ export class CreatePersonComponent implements OnInit {
   public selectedFileName: string;
   public onImageSelectionChanged = new Subject<File[]>();
   public imageUploading: boolean;
-  public imageUploadError: boolean = false;
-  public submitted: boolean = false;
-  public created: boolean = false;
-  public creating: boolean = false;
-  public createError: boolean = false;
+  public imageUploadError = false;
+  public submitted = false;
+  public created = false;
+  public creating = false;
+  public createError = false;
 
   constructor(private imageService: ImageService, private personService: PersonService) {
   }

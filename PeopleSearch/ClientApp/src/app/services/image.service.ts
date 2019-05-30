@@ -1,6 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { ImageUploadResponse } from './models/image-upload-response.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +13,9 @@ export class ImageService {
     this.imageApiUrl = `${baseUrl}/api/Image`;
   }
 
-  upload(file: File): Observable<Object> {
+  upload(file: File): Observable<ImageUploadResponse> {
     const uploadData = new FormData();
-    uploadData.append("file", file);
-    return this.httpClient.post(`${this.imageApiUrl}/Upload`, uploadData);
+    uploadData.append('file', file);
+    return this.httpClient.post<ImageUploadResponse>(`${this.imageApiUrl}/Upload`, uploadData);
   }
 }

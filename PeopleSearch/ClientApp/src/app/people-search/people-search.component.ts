@@ -10,8 +10,8 @@ import { PersonService } from '../services/person.service';
 })
 export class PeopleSearchComponent {
   public people: Person[] = [];
-  public loading: boolean = false;
-  public error: boolean = false;
+  public loading = false;
+  public error = false;
   public onSearchBoxKeyupEvent: Subject<string> = new Subject<string>();
 
   constructor(private personService: PersonService) {
@@ -26,7 +26,7 @@ export class PeopleSearchComponent {
           this.loading = true;
           this.error = false;
         }),
-        map((searchText: string) => 
+        map((searchText: string) =>
           this.personService.searchByName(searchText)
             .pipe(catchError(err => {
               console.log(err);
