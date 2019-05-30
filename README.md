@@ -57,12 +57,10 @@ I first let the page load before throttling the connection, this way only the se
 
 # Possible improvements
 
-## Create New Person
+## Image Upload Cleanup Job
 
-Creates a new person that will show up in searches.
-This would involve uploading a profile picture, which could also involve a client-side image editing tool if we wanted to get fancy.
-This image editor could enforce image size and dimensions before uploading to the back end (which would also check these).
-We could also store these images in Azure or AWS instead of our own server.
+It's probable that if this was a production system, some images in wwwroot\user-images won't have user accounts
+associated with them.  A console app could be created to find out which ones are not associated with a user and delete them.
 
 ## Interests as Tags
 
