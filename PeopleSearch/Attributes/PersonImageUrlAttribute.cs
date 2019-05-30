@@ -9,12 +9,7 @@ namespace PeopleSearch.Attributes
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             var imageUrl = (string)value;
-            if (!imageUrl.StartsWith("user-images\\"))
-            {
-                return new ValidationResult(ERROR_MESSAGE);
-            }
-
-            return ValidationResult.Success;
+            return !imageUrl.StartsWith("user-images\\") ? new ValidationResult(ERROR_MESSAGE) : ValidationResult.Success;
         }
     }
 }
