@@ -23,6 +23,7 @@ namespace PeopleSearch.IoC.DependencyInjection
             services.AddTransient<IPersonRepository, PersonRepository>();
             services.AddTransient<IPersonService, PersonService>();
             services.AddTransient<IImageService, ImageService>();
+            services.AddTransient<IFileService, FileService>();
 
             var mappingConfig = new MapperConfiguration(ce =>
             {
