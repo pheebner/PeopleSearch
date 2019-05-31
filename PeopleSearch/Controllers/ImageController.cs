@@ -21,7 +21,8 @@ namespace PeopleSearch.Controllers
         {
             if (file.Length == 0)
             {
-                return BadRequest("File length is zero");
+                const string FILE_LENGTH_ZERO = "File length is zero";
+                return base.BadRequest(FILE_LENGTH_ZERO);
             }
 
             var relativeFilePath = await _imageService.UploadAsync(file);
