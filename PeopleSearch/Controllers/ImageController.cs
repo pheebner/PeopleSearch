@@ -1,9 +1,6 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.IO;
-using System.Linq;
+using PeopleSearch.Business.Interfaces;
 using System.Threading.Tasks;
 
 namespace PeopleSearch.Controllers
@@ -12,11 +9,11 @@ namespace PeopleSearch.Controllers
     [ApiController]
     public class ImageController : ControllerBase
     {
-        private readonly IHostingEnvironment _hostingEnvironment;
+        private readonly IImageService _imageService;
 
-        public ImageController(IHostingEnvironment hostingEnvironment)
+        public ImageController(IImageService imageService)
         {
-            _hostingEnvironment = hostingEnvironment;
+            _imageService = imageService;
         }
 
         [HttpPost("[action]")]
@@ -27,17 +24,9 @@ namespace PeopleSearch.Controllers
                 return BadRequest("File length is zero");
             }
 
-            var fileExtension = file.FileName.Split('.').Last();
-            var newFileName = $"{Guid.NewGuid().ToString()}.{fileExtension}";
-            var simpleFilePath = Path.Combine("user-images", newFileName);
-            var filePath = Path.Combine(_hostingEnvironment.WebRootPath, simpleFilePath);
+            var relativeFilePath = await _imageService.UploadAsync(file);
 
-            using (var stream = new FileStream(filePath, FileMode.Create))
-            {
-                await file.CopyToAsync(stream);
-            }
-
-            return Ok(new { pictureUrl = simpleFilePath });
+            return Ok(new { pictureUrl = relativeFilePath });
         }
     }
 }
